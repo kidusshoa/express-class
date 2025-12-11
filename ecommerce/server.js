@@ -14,8 +14,10 @@ app.use(express.json())
 connectDB();
 
 import userRoutes from './routes/userRoutes.js'
+import productRoutes from './routes/productRoutes.js'
 
 app.use('/api/users', userRoutes)
+app.use('/api/products', productRoutes)
 
 app.get('/', (req, res) => {
     res.send('Welcome to E-commerce API')

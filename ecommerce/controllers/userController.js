@@ -2,7 +2,7 @@ import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
 const generateToken = (id) => {
-    return jwt.sign({userid: id}, process.env.JWT_SECRET, {
+    return jwt.sign({userId: id}, process.env.JWT_SECRET, {
         expiresIn: '30d',
     });
 }
@@ -53,3 +53,19 @@ export const loginUser = async (req, res) =>{
         res.status(401).json({message: 'Invalid email or password'});
     }
 }
+
+export const getUserProfile = async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if(user){
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin
+        })
+    }else{
+        res.status(404).json({message: 'User not found'});
+        }
+    }
+
