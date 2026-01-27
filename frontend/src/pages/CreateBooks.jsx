@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const CreateBooks = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [publishYear, setPublishYear] = useState('');
+    const [publishedYear, setPublishYear] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -15,11 +15,11 @@ const CreateBooks = () => {
         const data = {
             title,
             author,
-            publishYear,
+            publishedYear,
         };
         setLoading(true);
         axios
-            .post('http://localhost:5555/books', data)
+            .post('http://localhost:5000/books', data)
             .then(() => {
                 setLoading(false);
                 navigate('/');
@@ -61,7 +61,7 @@ const CreateBooks = () => {
                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Publish Year</label>
                     <input
                         type='number'
-                        value={publishYear}
+                        value={publishedYear}
                         onChange={(e) => setPublishYear(e.target.value)}
                         className='input'
                         placeholder='Year'

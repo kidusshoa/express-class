@@ -11,7 +11,7 @@ const Home = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/books')
+            .get('http://localhost:5000/books')
             .then((response) => {
                 setBooks(response.data.data);
                 setLoading(false);
@@ -39,7 +39,7 @@ const Home = () => {
                         <div key={book._id} className='card'>
                             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                                 <span style={{ backgroundColor: 'var(--accent)', color: 'var(--secondary)', padding: '0.25rem 0.75rem', borderRadius: '0.5rem', fontSize: '0.875rem', fontWeight: 600 }}>
-                                    {book.publishYear}
+                                    {book.publishedYear}
                                 </span>
                                 <span style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>
                                     {book._id.slice(-6)}

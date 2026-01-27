@@ -7,14 +7,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 const EditBook = () => {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
-    const [publishYear, setPublishYear] = useState('');
+    const [publishedYear, setPublishYear] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`http://localhost:5555/books/${id}`)
+        axios.get(`http://localhost:5000/books/${id}`)
             .then((response) => {
                 setAuthor(response.data.author);
                 setPublishYear(response.data.publishYear);
@@ -31,11 +31,11 @@ const EditBook = () => {
         const data = {
             title,
             author,
-            publishYear,
+            publishedYear,
         };
         setLoading(true);
         axios
-            .put(`http://localhost:5555/books/${id}`, data)
+            .put(`http://localhost:5000/books/${id}`, data)
             .then(() => {
                 setLoading(false);
                 navigate('/');
@@ -75,7 +75,7 @@ const EditBook = () => {
                     <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 500 }}>Publish Year</label>
                     <input
                         type='number'
-                        value={publishYear}
+                        value={publishedYear}
                         onChange={(e) => setPublishYear(e.target.value)}
                         className='input'
                     />
